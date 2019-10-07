@@ -14,7 +14,7 @@
     addPhraseToDisplay(){
         
         // getting phrases randomly and assigning ul element of phrase id from HTML
-        const activePhrase = game.getRandomPhrase().phrase;
+        const activePhrase = game.activePhrase.phrase;
         const phraseUl = document.querySelector('#phrase ul');
 
         // lopping through the phrase and assigning each words to li with the class amd appending it in the HTML
