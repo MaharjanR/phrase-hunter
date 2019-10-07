@@ -15,38 +15,35 @@
      * @returns {Array} An array of phrase that could be used in the game
      */
     createPhrase(){
-        // const phrase = [
-        //     'Life is like a box of choclates',
-        //     'Work hard play hard',
-        //     'You wont go anywhere without taking a first step',
-        //     'You are your own god',
-        //     'How you doing'
-        // ]
-
-        let phrase = [];
 
         const phraseArr = [
-            phrase = new Phrase('Life is like a box of choclates'),
-            phrase = new Phrase('Work hard play hard'),
-            phrase = new Phrase('You wont go anywhere without taking a first step'),
-            phrase = new Phrase('You are your own god'),
-            phrase = new Phrase('How you doing')
+            new Phrase('Life is like a box of choclates'),
+            new Phrase('Work hard play hard'),
+            new Phrase('You wont go anywhere without taking a first step'),
+            new Phrase('You are your own god'),
+            new Phrase('How you doing')
         ]
-
-        console.log(phraseArr);
-        return phrase;
+        
+        return phraseArr;
     }
 
     /**
      * selects random phrase form the phrases property
      * @returns {object} Phrase objects chose to be used
      */
-    // getRandomPhrase(){
+    getRandomPhrase(){
 
-    //     let randomNum = Math.floor(Math.random() * this.phrases.length + 1);
+        let randomNum = Math.floor(Math.random() * this.phrases.length);
+        let randomPhrase = this.phrases[randomNum];
         
-    //     let randomPhrase = this.phrases[randomNum];
+        return randomPhrase;
+    }
 
-    //     return randomPhrase;
-    // }
+    startGame(){
+        const overlay = document.querySelector('#overlay');
+        overlay.style.display = 'none';
+        this.activePhrase = this.getRandomPhrase();
+
+        this.activePhrase.addPhraseToDisplay();
+    }
 }
