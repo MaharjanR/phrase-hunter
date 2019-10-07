@@ -51,6 +51,13 @@
     }
 
     handleInteractions(){
-        
+
+        console.log(this.activePhrase);
+        document.querySelector('.keyrow').addEventListener('click', function(e){
+            let letter = e.target.innerHTML;
+            console.log(letter);
+
+            this.activePhrase.checkLetter(letter);
+        });
     }
 }
