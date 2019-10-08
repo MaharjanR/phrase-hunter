@@ -40,7 +40,19 @@
     * @param (string) letter - Letter to check
     */
     checkLetter(letter) {
-        // console.log(letter);
+
+        const li = document.querySelectorAll('#phrase ul li');
+
+        for( let i = 0; i < li.length; i++){
+
+            if(letter === li[i].innerHTML){
+
+                this.showMatchedLetter(li[i]);
+            }
+
+
+        }
+      
     };
 
     /**
@@ -48,6 +60,8 @@
     * @param (string) letter - Letter to display
     */
     showMatchedLetter(letter) {
+
+        letter.className = 'show';   
 
     };
  }

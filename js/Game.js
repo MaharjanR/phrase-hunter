@@ -50,14 +50,70 @@
         this.activePhrase.addPhraseToDisplay();
     }
 
-    handleInteractions(){
+    handleInteractions(letter){
 
-        console.log(this.activePhrase);
-        document.querySelector('.keyrow').addEventListener('click', function(e){
-            let letter = e.target.innerHTML;
-            console.log(letter);
-
-            this.activePhrase.checkLetter(letter);
-        });
+        this.activePhrase.checkLetter(letter);
     }
+
+    /**
+    * Checks for winning move
+    * @return {boolean} True if game has been won, false if game wasn't won
+    */
+    checkForWin(){
+
+        const li = document.querySelectorAll('#phrase ul li');
+        let wordsLeft = 0;
+        
+        for( let i = 0; i < li.length; i++){
+            if(li[i].className !== 'show' && li[i].className !== 'space'){
+                wordsLeft++;
+            }
+        }
+
+        console.log(wordsLeft);
+        if(wordsLeft === 0){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    /**
+    * Increases the value of the missed property
+    * Removes a life from the scoreboard
+    * Checks if player has remaining lives and ends game if player is out
+    */
+    removeLife() {
+
+        this.missed++;
+
+        const heartLi = document.querySelectorAll('ol img');
+        let totalHealth = heartLi.length;
+        console.log(totalHealth);
+
+        for(let i = 0; i < heartLi.length; i++){
+
+            if(heartLi[i].getAttribute('src') == 'images/liveHeart.png'){
+
+                heartLi[i].src = 'images/lostHeart.png';
+                totalHealth--;
+                console.log(totalHealth);
+                return;
+            }
+        }
+
+        if(totalHealth == 0){
+            console.log('game lost');
+        }
+    };
+
+    /**
+    * Displays game over message
+    * @param {boolean} gameWon - Whether or not the user won the game
+    */
+    gameOver(gameWon) {
+
+    };
+
 }
