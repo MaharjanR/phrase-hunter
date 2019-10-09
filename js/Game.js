@@ -87,24 +87,23 @@
     removeLife() {
 
         this.missed++;
-
+        console.log(this.missed);
         const heartLi = document.querySelectorAll('ol img');
-        let totalHealth = heartLi.length;
-        console.log(totalHealth);
 
+        if(this.missed === 5){
+            const overlay = document.querySelector('#overlay');
+            overlay.style.display = 'flex';
+            const gameOver = document.querySelector('#game-over-message');
+            gameOver.innerHTML = 'Sorry, Better luck next time!';
+        }
         for(let i = 0; i < heartLi.length; i++){
 
             if(heartLi[i].getAttribute('src') == 'images/liveHeart.png'){
 
                 heartLi[i].src = 'images/lostHeart.png';
-                totalHealth--;
-                console.log(totalHealth);
                 return;
             }
-        }
-
-        if(totalHealth == 0){
-            console.log('game lost');
+            
         }
     };
 
@@ -113,7 +112,13 @@
     * @param {boolean} gameWon - Whether or not the user won the game
     */
     gameOver(gameWon) {
-
+        if(gameWon){
+            
+            const overlay = document.querySelector('#overlay');
+            overlay.style.display = 'flex';
+            const gameOver = document.querySelector('#game-over-message');
+            gameOver.innerHTML = 'Great Job';
+        }
     };
 
 }

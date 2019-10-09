@@ -41,18 +41,16 @@
     */
     checkLetter(letter) {
 
-        const li = document.querySelectorAll('#phrase ul li');
+        const phraseLi = document.querySelectorAll('#phrase ul li');
+        console.log(phraseLi.length);
 
-        for( let i = 0; i < li.length; i++){
-
-            if(letter === li[i].innerHTML){
-
-                this.showMatchedLetter(li[i]);
+        for( let i = 0; i < phraseLi.length; i++){
+            if(letter === phraseLi[i].innerHTML){
+                this.showMatchedLetter(phraseLi[i]);
             }
-
-
         }
       
+        
     };
 
     /**
@@ -61,8 +59,19 @@
     */
     showMatchedLetter(letter) {
 
+        console.log(letter);
+        const buttonLi = document.querySelectorAll('#qwerty button');
+
         letter.className = 'show';   
 
+        for( let i = 0; i < buttonLi.length; i++){
+            if(letter.innerHTML === buttonLi[i].innerHTML){
+                console.log(buttonLi[i]);
+                buttonLi[i].className = 'chosen';
+                buttonLi[i].setAttribute('disabled', true);
+
+            }
+        }
     };
  }
 
