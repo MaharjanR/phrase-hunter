@@ -41,16 +41,35 @@
     */
     checkLetter(letter) {
 
-        const phraseLi = document.querySelectorAll('#phrase ul li');
-        console.log(phraseLi.length);
+        const phraseLi = document.querySelectorAll('#phrase ul li');        
+        const buttonLi = document.querySelectorAll('#qwerty button');
+        let letterFound = false;
 
         for( let i = 0; i < phraseLi.length; i++){
             if(letter === phraseLi[i].innerHTML){
                 this.showMatchedLetter(phraseLi[i]);
+                letterFound = true;
             }
         }
-      
-        
+
+        // looping through the buttons and disabling them accordingly based on the letter found in the phrase or not
+        for( let i = 0; i < buttonLi.length; i++){
+            if(!letterFound){
+                if(letter === buttonLi[i].innerHTML){
+                    buttonLi[i].className = 'wrong';
+                    buttonLi[i].setAttribute('disabled', true);
+                    game.removeLife();
+    
+                }
+            }
+            else{
+                if(letter === buttonLi[i].innerHTML){
+                    buttonLi[i].className = 'chosen';
+                    buttonLi[i].setAttribute('disabled', true);
+                }
+            }
+           
+        }
     };
 
     /**
@@ -58,20 +77,7 @@
     * @param (string) letter - Letter to display
     */
     showMatchedLetter(letter) {
-
-        console.log(letter);
-        const buttonLi = document.querySelectorAll('#qwerty button');
-
         letter.className = 'show';   
-
-        for( let i = 0; i < buttonLi.length; i++){
-            if(letter.innerHTML === buttonLi[i].innerHTML){
-                console.log(buttonLi[i]);
-                buttonLi[i].className = 'chosen';
-                buttonLi[i].setAttribute('disabled', true);
-
-            }
-        }
     };
  }
 
