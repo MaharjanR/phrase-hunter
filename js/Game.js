@@ -46,7 +46,6 @@
         const overlay = document.querySelector('#overlay');
         overlay.style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
-
         this.activePhrase.addPhraseToDisplay();
     }
 
@@ -65,17 +64,15 @@
         let wordsLeft = 0;
         
         for( let i = 0; i < li.length; i++){
+            // checking to see is there any words left to display on the phrase, if there is the wordsLeft increases
             if(li[i].className !== 'show' && li[i].className !== 'space'){
                 wordsLeft++;
             }
         }
 
-        console.log(wordsLeft);
+        // once there is no wordleft on the phrase, game is won so gaveOver is called
         if(wordsLeft === 0){
-            return true;
-        }
-        else {
-            return false;
+            this.gameOver(true);
         }
     }
 
@@ -114,6 +111,7 @@
     gameOver(gameWon) {
         if(gameWon){
             
+            // After the game is won, overlay is brought back to display it
             const overlay = document.querySelector('#overlay');
             overlay.style.display = 'flex';
             const gameOver = document.querySelector('#game-over-message');

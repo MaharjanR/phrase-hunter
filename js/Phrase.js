@@ -66,6 +66,7 @@
                 if(letter === buttonLi[i].innerHTML){
                     buttonLi[i].className = 'chosen';
                     buttonLi[i].setAttribute('disabled', true);
+                    game.checkForWin();
                 }
             }
            
