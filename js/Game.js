@@ -120,6 +120,9 @@
         }
     };
 
+    /**
+     * Resets all the button pressed and remove the phrases once the game is won/lost
+     */
     reset(){
 
         const li = document.querySelectorAll('#phrase li');
@@ -132,6 +135,7 @@
 
         for(let i = 0; i < key.length; i++){
             key[i].className = 'key';
+            key[i].removeAttribute('disabled');
             console.log(key[i]);
         }
 
