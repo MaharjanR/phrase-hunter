@@ -84,7 +84,6 @@
     removeLife() {
 
         this.missed++;
-        console.log(this.missed);
         const heartLi = document.querySelectorAll('ol img');
 
         if(this.missed === 5){
@@ -92,6 +91,7 @@
             overlay.style.display = 'flex';
             const gameOver = document.querySelector('#game-over-message');
             gameOver.innerHTML = 'Sorry, Better luck next time!';
+            game.reset();
         }
         for(let i = 0; i < heartLi.length; i++){
 
@@ -116,7 +116,25 @@
             overlay.style.display = 'flex';
             const gameOver = document.querySelector('#game-over-message');
             gameOver.innerHTML = 'Great Job';
+            game.reset();
         }
     };
+
+    reset(){
+
+        const li = document.querySelectorAll('#phrase li');
+        const key = document.querySelectorAll('#qwerty button');
+        console.log(key);
+
+        for(let i = 0; i < li.length; i++){
+            li[i].parentNode.removeChild(li[i]);
+        }
+
+        for(let i = 0; i < key.length; i++){
+            key[i].className = 'key';
+            console.log(key[i]);
+        }
+
+    }
 
 }
