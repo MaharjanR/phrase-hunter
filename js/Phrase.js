@@ -17,7 +17,7 @@
         const activePhrase = game.activePhrase.phrase;
         const phraseUl = document.querySelector('#phrase ul');
 
-        // lopping through the phrase and assigning each words to li with the class amd appending it in the HTML
+        // lopping through the phrase and assigning each words to li with the class and appending it in the HTML
         for(let i = 0; i < activePhrase.length; i++){
             const letter = activePhrase.charAt(i);
             const phraseLi = document.createElement('li');
@@ -41,35 +41,14 @@
     */
     checkLetter(letter) {
 
-        const phraseLi = document.querySelectorAll('#phrase ul li');        
-        const buttonLi = document.querySelectorAll('#qwerty button');
-        let letterFound = false;
+        const phraseLi = document.querySelectorAll('#phrase ul li'); 
+        // let letterFound = false;
 
         for( let i = 0; i < phraseLi.length; i++){
             if(letter === phraseLi[i].innerHTML){
-                this.showMatchedLetter(phraseLi[i]);
-                letterFound = true;
+                // this.showMatchedLetter(phraseLi[i]);
+                return true;
             }
-        }
-
-        // looping through the buttons and disabling them accordingly based on the letter found in the phrase or not
-        for( let i = 0; i < buttonLi.length; i++){
-            if(!letterFound){
-                if(letter === buttonLi[i].innerHTML){
-                    buttonLi[i].className = 'wrong';
-                    buttonLi[i].setAttribute('disabled', true);
-                    game.removeLife();
-    
-                }
-            }
-            else{
-                if(letter === buttonLi[i].innerHTML){
-                    buttonLi[i].className = 'chosen';
-                    buttonLi[i].setAttribute('disabled', true);
-                    game.checkForWin();
-                }
-            }
-           
         }
     };
 
@@ -78,7 +57,15 @@
     * @param (string) letter - Letter to display
     */
     showMatchedLetter(letter) {
-        letter.className = 'show';   
+
+        const phraseLi = document.querySelectorAll('#phrase ul li'); 
+
+        for( let i = 0; i < phraseLi.length; i++){
+            if(letter === phraseLi[i].innerHTML){
+                
+                phraseLi[i].className = 'show';
+            }
+        }
     };
  }
 

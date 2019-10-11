@@ -49,8 +49,35 @@
         this.activePhrase.addPhraseToDisplay();
     }
 
+    /**
+     * checks the letter if its in the phrases or not act accordingly
+     * @param {string} letter alphabets pressed or clicked by the user
+     */
     handleInteractions(letter){
-        this.activePhrase.checkLetter(letter);
+        const letterFound = this.activePhrase.checkLetter(letter);    
+        const buttonLi = document.querySelectorAll('#qwerty button');
+
+        // looping through the buttons and disabling them accordingly based on the letter found in the phrase or not
+        for( let i = 0; i < buttonLi.length; i++){
+            if(!letterFound){
+                if(letter === buttonLi[i].innerHTML){
+                    buttonLi[i].className = 'wrong';
+                    buttonLi[i].setAttribute('disabled', true);
+                    game.removeLife();
+    
+                }
+            }
+            else{
+                this.activePhrase.showMatchedLetter(letter); 
+                if(letter === buttonLi[i].innerHTML){
+                    buttonLi[i].className = 'chosen';
+                    buttonLi[i].setAttribute('disabled', true);
+                    game.checkForWin();
+                }
+            }
+           
+        }
+        
     }
 
     /**
@@ -128,6 +155,7 @@
 
         const li = document.querySelectorAll('#phrase li');
         const key = document.querySelectorAll('#qwerty button');
+        const heartLi = document.querySelectorAll('ol img');
 
         for(let i = 0; i < li.length; i++){
             li[i].parentNode.removeChild(li[i]);
@@ -138,6 +166,11 @@
             key[i].removeAttribute('disabled');
         }
 
+        for(let i = 1; i < heartLi.length; i++){
+            heartLi[i].src = 'images/liveHeart.png';
+            console.log(i);
+            
+        }
     }
 
 }
