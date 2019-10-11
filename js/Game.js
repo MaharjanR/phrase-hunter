@@ -166,7 +166,7 @@
             key[i].removeAttribute('disabled');
         }
 
-        for(let i = 1; i < heartLi.length; i++){
+        for(let i = 0; i < heartLi.length; i++){
             heartLi[i].src = 'images/liveHeart.png';
             console.log(i);
             
