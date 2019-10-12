@@ -26,7 +26,8 @@ document.querySelector('body').addEventListener('keyup', function(e){
     // checks if the overlay is hidden or not and if is hidden then only it runs
     if(document.querySelector('#overlay').style.display == 'none'){
 
-        game.handleInteractions(e.key);
+        const alphabet = e.key.toLocaleLowerCase();
+        game.handleInteractions(alphabet);
     }
 
 });

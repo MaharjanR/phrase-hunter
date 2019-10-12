@@ -118,8 +118,11 @@
             overlay.className = 'lose'
             const gameOver = document.querySelector('#game-over-message');
             gameOver.innerHTML = 'Sorry, Better luck next time!';
+            heartLi[4].src = 'images/lostHeart.png';
             game.reset();
+            return;
         }
+
         for(let i = 0; i < heartLi.length; i++){
 
             if(heartLi[i].getAttribute('src') == 'images/liveHeart.png'){
@@ -168,8 +171,6 @@
 
         for(let i = 0; i < heartLi.length; i++){
             heartLi[i].src = 'images/liveHeart.png';
-            console.log(i);
-            
         }
     }
 
