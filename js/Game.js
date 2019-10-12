@@ -64,7 +64,7 @@
                     buttonLi[i].className = 'wrong';
                     buttonLi[i].setAttribute('disabled', true);
                     game.removeLife();
-    
+                    game.checkForWin();    
                 }
             }
             else{
@@ -100,6 +100,9 @@
         if(wordsLeft === 0){
             this.gameOver(true);
         }
+        else{
+            this.gameOver(false);        }
+
     }
 
     /**
@@ -111,17 +114,6 @@
 
         this.missed++;
         const heartLi = document.querySelectorAll('ol img');
-
-        if(this.missed === 5){
-            const overlay = document.querySelector('#overlay');
-            overlay.style.display = 'flex';
-            overlay.className = 'lose'
-            const gameOver = document.querySelector('#game-over-message');
-            gameOver.innerHTML = 'Sorry, Better luck next time!';
-            heartLi[4].src = 'images/lostHeart.png';
-            game.reset();
-            return;
-        }
 
         for(let i = 0; i < heartLi.length; i++){
 
@@ -148,6 +140,20 @@
             const gameOver = document.querySelector('#game-over-message');
             gameOver.innerHTML = 'Great Job';
             game.reset();
+        }
+        else{
+            const heartLi = document.querySelectorAll('ol img');
+
+            if(this.missed === 5){
+                const overlay = document.querySelector('#overlay');
+                overlay.style.display = 'flex';
+                overlay.className = 'lose'
+                const gameOver = document.querySelector('#game-over-message');
+                gameOver.innerHTML = 'Sorry, Better luck next time!';
+                heartLi[4].src = 'images/lostHeart.png';
+                game.reset();
+                return;
+            }
         }
     };
 
